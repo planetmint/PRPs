@@ -1,1 +1,1 @@
-# PEPs
+# Planetmint Refinement Proposals (PRPs)
