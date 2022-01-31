@@ -4,7 +4,7 @@ name: Consensus-Oriented Specification System
 type: Meta
 status: Draft
 editor: Jürgen Eckel <juergen@riddleandcode.com>
-contributors: Troy McConaghy <troy@planetmint.io>, Katha Griess <katha@planetmint.io>, JÜrgen Eckel <juergen@riddleandcode.com>
+contributors: JÜrgen Eckel <juergen@riddleandcode.com>
 ```
 
 This document describes a consensus-oriented specification system (COSS) for building interoperable technical specifications. COSS is based on a lightweight editorial process that seeks to engage the widest possible range of interested parties and move rapidly to consensus through working code.
