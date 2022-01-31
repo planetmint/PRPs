@@ -3,7 +3,7 @@ shortname: PRP-1
 name: Collective Code Construction Contract
 type: Meta
 status: Draft
-editor: Alberto Granzotto <alberto@planetmint.io>
+editor: JÜrgen Eckel <juergen@riddleandcode.com>
 ```
 
 Apart from section 2.2, this RFC is equivalent to the [unprotocols 1/C4](https://github.com/unprotocols/rfc/blob/master/1/README.md).
