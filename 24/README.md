@@ -17,7 +17,7 @@ This PRP only covers the process for ensuring that contributions are licensed pr
 
 # What to do
 
-If you're a BigchainDB repository maintainer, you must find another maintainer to do this process for _your_ pull requests. You must never merge your own pull requests.
+If you're a Planetmint repository maintainer, you must find another maintainer to do this process for _your_ pull requests. You must never merge your own pull requests.
 
 **Note: Copy the raw Markdown source of the following text, not the rendered HTML, because GitHub comments are written in Markdown.**
 
