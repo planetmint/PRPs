@@ -8,7 +8,7 @@ editor: juergen@riddleandcode.com
 
 
 ## Abstract
-In the current Planetmint repository existsa docker-compose.yml file, to set up a local node and run local tests.
+In the current Planetmint repository exists a docker-compose.yml file, to set up a local node and run local tests.
 Testing is of course not only restricted to the Planetmint repository has to be executed in repositories.
 
 ## Motivation
