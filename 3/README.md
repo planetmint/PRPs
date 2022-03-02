@@ -1,5 +1,5 @@
 ```
-shortname: PRP-24
+shortname: PRP-3
 name: How to handle ALL pull requests
 type: Meta
 status: Draft
@@ -51,6 +51,7 @@ Before we can merge this pull request, we need you to sign off on licensing your
    with your real name and your real email address. Sorry, no pseudonyms or anonymous contributions. Tip: You can tell Git to include a Signed-off-by line in a commit message by using `git commit --signoff` or `git commit -s`. If you didn't include a Signed-off-by line in your commits so far, you have several options. Probably the simplest is to close this pull request on GitHub, then on your local machine [do an interactive rebase of the last n commits](https://help.github.com/en/articles/changing-a-commit-message) (e.g. the last 3 commits, if your pull request contains 3 commits), then rename your local Git branch (`git branch -m <new-name>`), then push the newly-named branch to GitHub to create a new pull request.
 1. Verify that changes and features got written down and mentioned in the changelog.md.
 1. Verify that essential changes got mentioned in the documentation.
+1. Verify that the version number got increased. It's our goal to increase the patch-level-version for each PR.
 
 END TEXT BLOCK
 
