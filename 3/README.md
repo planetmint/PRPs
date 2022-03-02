@@ -1,5 +1,5 @@
 ```
-shortname: PRP-24
+shortname: PRP-3
 name: How to handle ALL pull requests
 type: Meta
 status: Draft
