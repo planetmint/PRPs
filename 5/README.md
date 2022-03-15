@@ -1,5 +1,5 @@
 ```
-shortname: PRP-24
+shortname: PRP-5
 name: New types of operations for the transactional modell
 type: Meta
 status: Draft
@@ -37,7 +37,7 @@ The amount in the operation reflects the size of batch that is being created fro
 
 This will result in the 
 * creation of 2 Z (using [10 A, 10 B, 10 C and 2 D]) and thereby burning
-* burning of [10 A, 10 B, 10 C and 2 D]
+* the followoing assets [10 A, 10 B, 10 C and 2 D] MUST NOT be assigned to any output
 
 Alice will thereafter hold [5 A, 5 B, 0 C, 3 D, 2 Z]
 It is assumed that Z has asset id: 41c6cd47fd316ef9e7c86640c5004296f8d384800445da956f45ec835140384e
@@ -48,7 +48,7 @@ Bob retrieves 1 Z with asset id 41c6cd47fd316ef9e7c86640c5004296f8d384800445da95
 Bob wants to recylce Z and decomposes Z into [5A, 5B, 5C, 1 D].
 
 This will result in the 
-* burning of Z 
+* the followoing asset Z is not assigned to any output 
 * and the creation of [5 A, 5 B, 5 C and 1 D]
 
 **NOTE that the decomposition process can result in fewer components that the original component got created with. 
@@ -58,7 +58,10 @@ This is due to waste/abuse or quality constraints. There is therefore on conditi
 
 Burning an asset is done by sending it to the following address: 
 'BurnBurnBurnBurnBurnBurnBurnBurnBurnBurnBurn'
-that is 11 times 'Burn'
+that is 11 times 'Burn'. Burning assets is an implicit transfer transaction and difficult to modell without getting this transfer explicitly signed by the signing party.
+Instead, an implicit burning of the asset is proposed that happens implicitly by not locking the asset by an output.
+This mans that the amount of assets being utilized to create the asset Z (COMPOSE) is taken as an input, but not forwarded to any output.
+The asset is not assigned to anyone and thereby non existant. It's a burning by non-assignment. 
 
 The operation is expected to be atomic and needs to be integrated into 
 * planetmint
