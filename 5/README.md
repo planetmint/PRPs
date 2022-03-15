@@ -59,17 +59,25 @@ This is due to waste/abuse or quality constraints. There is therefore on conditi
 Burning an asset is done by sending it to the following address: 
 'BurnBurnBurnBurnBurnBurnBurnBurnBurnBurnBurn'
 that is 11 times 'Burn'. Burning assets is an implicit transfer transaction and difficult to modell without getting this transfer explicitly signed by the signing party.
-Instead, an implicit burning of the asset is proposed that happens implicitly by not locking the asset by an output.
-This mans that the amount of assets being utilized to create the asset Z (COMPOSE) is taken as an input, but not forwarded to any output.
+Instead, an implicit burning of the asset is proposed. The implicit burning is done by not locking the asset by an output - not assigning and input to any output.
+This means that the amount of assets being utilized to create the asset Z (COMPOSE) is taken as an input, but not forwarded to any output.
 The asset is not assigned to anyone and thereby non existant. It's a burning by non-assignment. 
 
+## Verification
+The verification of the transactionshould look like follows:
+* verify inputs
+* verify consumption of inputs: that each output asset that is also input has at less amount than before.
+* verify that something got created, a new asset type, that does not have a corresponding input
+
+
+
+## Integration
 The operation is expected to be atomic and needs to be integrated into 
 * planetmint
 * planetmint-python
 
 
 # Credits
-
 The Developer Certificate of Origin was developed by the Linux community and has since been adopted by other projects, including many under the Linux Foundation umbrella (e.g. Hyperledger Fabric). The process described above (with the Signed-off-by line in Git commits) is also based on [the process used by the Linux community](https://github.com/torvalds/linux/blob/master/Documentation/process/submitting-patches.rst#11-sign-your-work---the-developers-certificate-of-origin).
 
 # Copyright Waiver
