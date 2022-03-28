@@ -4,13 +4,13 @@ export TMHOME=.tendermint
 
 
 init_tendermint () {
-	rm -rf ${TMHOME}/*
-	tendermint init 1>&2
+	rm -rf ~/${TMHOME}/*
+	tendermint init full 	1>&2
 }
 
 run_benchmark () {
 	while : ; do
-		tm-load-test -T $1 -r $4 -c $5 --endpoints ws://localhost:22657/websocket #| tail -f -n+2 | tr -s ' ' | cut -d ' ' -f 2-4 | tr ' ' ',' | tr '\n' ',' | sed 's/.$//'
+		tm-load-test -T $1 -r $4 -c $5 --endpoints ws://localhost:22658/websocket #| tail -f -n+2 | tr -s ' ' | cut -d ' ' -f 2-4 | tr ' ' ',' | tr '\n' ',' | sed 's/.$//'
 	 	if [ $? -eq 0 ]; then
 			break
 		fi
@@ -20,12 +20,12 @@ run_benchmark () {
 }
 
 run_internal () {
-	tendermint start --proxy-app=kvstore --log-level="$1" 1>&2 &
+	tendermint node --proxy_app=kvstore --log_level="$1" 1>&2 &
 	TM_PID=$!
 }
 
 run_external () {
-	tendermint start --log-level="$1" 1>&2 &
+	tendermint node --log_level="$1" 1>&2 &
 	TM_PID=$!
 	abci-cli kvstore 1>&2 &
 	ABCI_PID=$!
@@ -36,8 +36,8 @@ if [ "$7" == "no" ];
 then
 	LOGGING=*:error
 else
-	#LOGGING=main:info,state:info,*:error
-	LOGGING=error
+	LOGGING=main:info,state:info,*:error
+	#LOGGING=error
 fi
 
 square_wave () {
