@@ -1,16 +1,16 @@
 #!/bin/bash
 
-export TMHOME=mktemp
+export TMHOME=.tendermint
 
 
 init_tendermint () {
-	rm -rf ${TMHOME}/*
-	tendermint init 1>&2
+	rm -rf ~/${TMHOME}/*
+	tendermint init full 	1>&2
 }
 
 run_benchmark () {
 	while : ; do
-		tm-bench -T $1 -r $4 -c $5 localhost:46657 #| tail -f -n+2 | tr -s ' ' | cut -d ' ' -f 2-4 | tr ' ' ',' | tr '\n' ',' | sed 's/.$//'
+		tm-load-test -T $1 -r $4 -c $5 --endpoints ws://localhost:22658/websocket #| tail -f -n+2 | tr -s ' ' | cut -d ' ' -f 2-4 | tr ' ' ',' | tr '\n' ',' | sed 's/.$//'
 	 	if [ $? -eq 0 ]; then
 			break
 		fi
@@ -37,6 +37,7 @@ then
 	LOGGING=*:error
 else
 	LOGGING=main:info,state:info,*:error
+	#LOGGING=error
 fi
 
 square_wave () {

@@ -1,16 +1,16 @@
 #!/bin/bash
-
-export TMHOME=mktemp
+export TMHOME=.tendermint
 
 
 init_tendermint () {
-	rm -rf ${TMHOME}/*
-	tendermint init 1>&2
+	rm -rf ~/${TMHOME}/*
+	tendermint init full 1>&2
 }
 
 run_benchmark () {
 	while : ; do
-		tm-bench -T $2 -r $3 -c $4 localhost:46657
+		tm-load-test -T $2 -r $3 -c $4 --endpoints ws://localhost:22658/websocket
+		#tm-load-test -T $2 -r $3 -c $4 --endpoints localhost:46657
 	 	if [ $? -eq 0 ]; then
 			break
 		fi
@@ -37,12 +37,13 @@ then
 	LOGGING=*:error
 else
 	LOGGING=main:info,state:info,*:error
+	#LOGGING=error
 fi
 
 case "$1" in
 	internal)
 		init_tendermint
-		sed -i "s/^size = 100000/size = $6/" ~/mktemp/config/config.toml
+		sed -i "s/^size = 100000/size = $6/" ~/${TMHOME}/config/config.toml
 		run_internal ${LOGGING}
 		run_benchmark $1 $2 $3 $4 ${LOGGING}
 		kill ${TM_PID}
@@ -50,7 +51,7 @@ case "$1" in
 
 	external)
 		init_tendermint
-		sed -i "s/^size = 100000/size = $6/" ~/mktemp/config/config.toml
+		sed -i "s/^size = 100000/size = $6/" ~/${TMHOME}/config/config.toml
 		run_external ${LOGGING}
 		run_benchmark $1 $2 $3 $4 ${LOGGING}
 		kill ${TM_PID} ${ABCI_PID}
