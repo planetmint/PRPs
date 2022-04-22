@@ -9,7 +9,7 @@ contributors: JÜrgen Eckel <juergen@riddleandcode.com>
 
 This document describes a consensus-oriented specification system (COSS) for building interoperable technical specifications. COSS is based on a lightweight editorial process that seeks to engage the widest possible range of interested parties and move rapidly to consensus through working code.
 
-This specification is based on [unprotocols.org 2/COSS](https://rfc.unprotocols.org/spec:2/COSS/) and on [EIP1 - EIP Purpose and Guidelines](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1.md).
+This specification is based on [unprotocols.org 2/COSS](https://rfc.unprotocols.org/2/) and on [EIP1 - EIP Purpose and Guidelines](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1.md).
 
 ## Change Process
 This document is governed by the [PRP-2 (COSS)](../2/README.md).
