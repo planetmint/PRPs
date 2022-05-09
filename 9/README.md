@@ -123,8 +123,8 @@ To indicate version 2.0, the only allowed value is `"3.0"` (not `"3"`, `"v3"`, `
 
 The value of `"inputs"` is a <a href="#list"><span>list</span></a> of transaction inputs. (It might be implemented as an array, tuple, or something else in your programming language.)
 
-Each transaction input spends/transfers a previous <a href="#transaction-components-outputs">transaction output</a>. A CREATE transaction must have exactly one input (i.e. `num_inputs == 1`). A TRANSFER transaction must have at least one input (i.e. `num_inputs >= 1`).
-<!-- TODO: ADD RULES FOR COMPOSE / DECOMPOSE -->
+Each transaction input spends/transfers a previous <a href="#transaction-components-outputs">transaction output</a>. A CREATE transaction must have exactly one input (i.e. `num_inputs == 1`). A TRANSFER transaction must have at least one input (i.e. `num_inputs >= 1`). A COMPOSE transaction must have at least one input (i.e. `num_inputs >= 1`). A DECOMPOSE transaction must have exactly on input (i.e. `num_inputs == 1`)
+<!-- TODO: CHECK WITH JÜRGEN IF RULES ARE CORRECT -->
 
 There’s a high-level overview of transaction inputs and outputs in <a href="https://docs.bigchaindb.com/en/latest/transaction-concepts.html">the Planetmint root docs page about transaction concepts</a>. “Assets” are a core concept. Transaction inputs and outputs are the mechanism by which control or ownership of an asset (or shares of an asset) is transferred. (See the <a href="#a-note-about-owners">note about owners</a>.) Amounts of an asset are encoded in the outputs of a transaction, and each output may be spent separately. To spend an output, the output’s condition must be met by an input that provides a corresponding fulfillment. Each output may be spent at most once, by a single input.
 
@@ -225,7 +225,9 @@ If Jack did the latter, he could make a TRANSFER transaction to transfer the 56 
 
 In general, in a TRANSFER transaction, the sum of the output amounts must be the same as the sum of the outputs that it transfers (i.e. the sum of the "input amounts").
 
-<!-- TODO: ADD SECTION ON COMPOSE / DECOMPOSE -->
+For COMPOSE transactions the sum of output amounts for not entirely consumed inputs must be less then the sum of inputs used in the transaction. The difference must be kept in the <a href="transaction-components-metadata">metadata</a>.
+
+For DECOMPOSE transactions the sum of output amounts must be the same or less than the inputs used for composing the input. The difference between output amounts must be stored in a separate output that indicates the lost amount. Read [PRP-5](../5/) for more information.
 
 ### Transaction Components: Conditions
 
@@ -435,13 +437,13 @@ In a TRANSFER transaction, an asset must be an <a href="#associative-array"><spa
 }
 ```
 
-In a VALIDATOR_ELECTION transaction, the allowed asset values are governed by [BEP-18](../18) and [BEP-21](../21).
+In a VALIDATOR_ELECTION transaction, the allowed asset values are governed by [BEP-18](https://github.com/bigchaindb/BEPs/tree/master/18) and [BEP-21](https://github.com/bigchaindb/BEPs/tree/master/21).
 
-In a CHAIN_MIGRATION_ELECTION transaction, the allowed asset values are governed by [BEP-18](../18) and [BEP-42](../42).
+In a CHAIN_MIGRATION_ELECTION transaction, the allowed asset values are governed by [BEP-18](https://github.com/bigchaindb/BEPs/tree/master/18) and [BEP-42](https://github.com/bigchaindb/BEPs/tree/master/42).
 
-In a VOTE transaction, the allowed asset values are governed by [BEP-18](../18).
+In a VOTE transaction, the allowed asset values are governed by [BEP-18](https://github.com/bigchaindb/BEPs/tree/master/18).
 
-<!-- EXPLAIN WHERE TO FIND INFORMATION ON COMPOSE / DECOMPOSE -->
+In a COMPOSE or DECOMPOSE transaction, the allowed asset values are governed by [PRP-5](../5)
 
 ### Transaction Components: Metadata
 
@@ -720,9 +722,9 @@ If the database backend is MongoDB:
 
 #### Additional Rules
 
-There are additional validation rules affecting VALIDATOR_ELECTION, CHAIN_MIGRATION_ELECTION and VOTE transactions. See [BEP-18](../18), [BEP-21](../21) and [BEP-42](../42).
+There are additional validation rules affecting VALIDATOR_ELECTION, CHAIN_MIGRATION_ELECTION and VOTE transactions. See [BEP-18](https://github.com/bigchaindb/BEPs/tree/master/18), [BEP-21](https://github.com/bigchaindb/BEPs/tree/master/21) and [BEP-42](https://github.com/bigchaindb/BEPs/tree/master/42).
 
-<!-- TODO: ADD SECTION ON  COMPOSE DECOMPOSE RULES OR WHERE TO FIND THEM -->
+There are additional validation rules affectiing COMPOSE and DECOMPOSE transactions. See [PRP-5](../5)
 
 ## A Note about Owners
 
