@@ -411,30 +411,53 @@ The operation indicates the type/kind of transaction, and how it should be valid
 
 ### Transaction Components: Assets
 
-<!-- ADD SECTION FOR DATA STRUCTURE AND ORDER OF ASSETS ARRAY -->
-
-In a CREATE transaction, an asset can be <a href="#ctnull"><span>ctnull</span></a> (e.g. `None` in Python), or an <a href="#associative-array"><span>associative array</span></a> containing exactly one key-value pair. The key must be `"data"` and the value can be any valid associative array. Here’s a JSON example:
+In a CREATE transaction, an asset can be <a href="#ctnull"><span>ctnull</span></a> (e.g. `None` in Python), or a list containing exactly one <a href="#associative-array"><span>associative array</span></a> containing exactly one key-value pair. The key must be `"data"` and the value can be any valid associative array. Here’s a JSON example:
 
 ```json
-{
-    "data": {
-        "desc": "Laundromat Fantastique",
-        "address": "461B Grand Palace Road",
-        "international_laundromat_identifier": "bx45-am-333",
-        "known_issues": "No known issues. It's fantastique!"
+[
+    {
+        "data": {
+            "desc": "Laundromat Fantastique",
+            "address": "461B Grand Palace Road",
+            "international_laundromat_identifier": "bx45-am-333",
+            "known_issues": "No known issues. It's fantastique!"
+        }
     }
-}
+]
 ```
 
 The meaning of a “valid associative array” may depend on the database backend used;
 see the transaction validation rules that depend on the database backend used.
 
-In a TRANSFER transaction, an asset must be an <a href="#associative-array"><span>associative array</span></a> containing exactly one key-value pair. The key must be `"id"` and the value must be a 64-character hex string: a <a href="#transaction-components-transaction-id"><span>transaction ID</span></a>. Here’s a JSON example:
+In a TRANSFER transaction, assets must be a list containing <a href="#associative-array"><span>associative arrays</span></a> containing exactly one key-value pair. The key must be `"id"` and the value must be a 64-character hex string: a <a href="#transaction-components-transaction-id"><span>transaction ID</span></a>. Here’s a JSON example:
 
 ```json
-{
-    "id": "38100137cea87fb9bd751e2372abb2c73e7d5bcf39d940a5516a324d9c7fb88d"
-}
+[
+    {
+        "id": "38100137cea87fb9bd751e2372abb2c73e7d5bcf39d940a5516a324d9c7fb88d"
+    }
+]
+```
+
+In v3.0 new transaction types were added that require more than one asset. For this reason asset was changed to assets. These transactions have a limitation that only one associative array containing `data` that must be the first element in the list and an arbitrary number of associative arrays containing `id` are allowed. Here's a JSON example:
+
+```json
+[
+    {
+        "data": {
+            "desc": "Laundromat Fantastique",
+            "address": "461B Grand Palace Road",
+            "international_laundromat_identifier": "bx45-am-333",
+            "known_issues": "No known issues. It's fantastique!"
+        }
+    },
+    {
+        "id": "38100137cea87fb9bd751e2372abb2c73e7d5bcf39d940a5516a324d9c7fb88d"
+    },
+    {
+        "id": "107ec21f4c53cd2a934941010437ac74882161bcbefdfd7664268823fc347996"
+    }
+]
 ```
 
 In a VALIDATOR_ELECTION transaction, the allowed asset values are governed by [BEP-18](https://github.com/bigchaindb/BEPs/tree/master/18) and [BEP-21](https://github.com/bigchaindb/BEPs/tree/master/21).
@@ -443,7 +466,7 @@ In a CHAIN_MIGRATION_ELECTION transaction, the allowed asset values are governed
 
 In a VOTE transaction, the allowed asset values are governed by [BEP-18](https://github.com/bigchaindb/BEPs/tree/master/18).
 
-In a COMPOSE or DECOMPOSE transaction, the allowed asset values are governed by [PRP-5](../5)
+In a COMPOSE or DECOMPOSE transaction, the allowed asset values are governed by [PRP-5](../5).
 
 ### Transaction Components: Metadata
 
@@ -465,6 +488,8 @@ Here’s a JSON example:
     }
 }
 ```
+
+For COMPOSE and DECOMPOSE transactions additional information in the metadata is needed. The required values are governed by [PRP-5](../5).
 
 ## How to Construct a Transaction
 
