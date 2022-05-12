@@ -124,7 +124,6 @@ To indicate version 2.0, the only allowed value is `"3.0"` (not `"3"`, `"v3"`, `
 The value of `"inputs"` is a <a href="#list"><span>list</span></a> of transaction inputs. (It might be implemented as an array, tuple, or something else in your programming language.)
 
 Each transaction input spends/transfers a previous <a href="#transaction-components-outputs">transaction output</a>. A CREATE transaction must have exactly one input (i.e. `num_inputs == 1`). A TRANSFER transaction must have at least one input (i.e. `num_inputs >= 1`). A COMPOSE transaction must have at least one input (i.e. `num_inputs >= 1`). A DECOMPOSE transaction must have exactly on input (i.e. `num_inputs == 1`)
-<!-- TODO: CHECK WITH JÜRGEN IF RULES ARE CORRECT -->
 
 There’s a high-level overview of transaction inputs and outputs in <a href="https://docs.bigchaindb.com/en/latest/transaction-concepts.html">the Planetmint root docs page about transaction concepts</a>. “Assets” are a core concept. Transaction inputs and outputs are the mechanism by which control or ownership of an asset (or shares of an asset) is transferred. (See the <a href="#a-note-about-owners">note about owners</a>.) Amounts of an asset are encoded in the outputs of a transaction, and each output may be spent separately. To spend an output, the output’s condition must be met by an input that provides a corresponding fulfillment. Each output may be spent at most once, by a single input.
 
@@ -181,7 +180,9 @@ If the transaction is a CREATE transaction, then the fulfillment must fulfill an
 
 If the transaction is a TRANSFER transaction, then the fulfillment must fulfill the condition in the <a href="#transaction-components-outputs"><span>output</span></a> that is being transferred/spent. The section about <a href="#transaction-components-conditions"><span>conditions</span></a> explains how to construct a condition object.
 
-<!-- TODO: ADD PARAGRAPH ON COMPOSE / DECOMPOSE -->
+For COMPOSE transactions the same rules as for CREATE apply for the output that is created and the same rules as for TRANSFER apply for the rest of the outputs that are being consumed.
+
+<!-- TODO: ADD PARAGRAPH FOR DECOMPOSE -->
 
 The specifics of how to compute a fulfillment for a condition (and the associated fulfillment string) are given in the crypto-conditions spec. Consult the <a href="https://tools.ietf.org/html/draft-thomas-crypto-conditions-03">crypto-conditions spec (version 03)</a> or use <a href="https://github.com/rfcs/crypto-conditions#implementations">an existing implementation of crypto-conditions</a>. The section about <a href="#how-to-construct-a-transaction"><span>how to construct a transaction</span></a> gives more details, including a link to example Python code.
 
