@@ -182,7 +182,7 @@ If the transaction is a TRANSFER transaction, then the fulfillment must fulfill 
 
 For COMPOSE transactions the same rules as for CREATE apply for the output that is created and the same rules as for TRANSFER apply for the rest of the outputs that are being consumed.
 
-<!-- TODO: ADD PARAGRAPH FOR DECOMPOSE -->
+If the transaction is a DECOMPOSE transaction the same rules as for a TRANSFER transaction apply.
 
 The specifics of how to compute a fulfillment for a condition (and the associated fulfillment string) are given in the crypto-conditions spec. Consult the <a href="https://tools.ietf.org/html/draft-thomas-crypto-conditions-03">crypto-conditions spec (version 03)</a> or use <a href="https://github.com/rfcs/crypto-conditions#implementations">an existing implementation of crypto-conditions</a>. The section about <a href="#how-to-construct-a-transaction"><span>how to construct a transaction</span></a> gives more details, including a link to example Python code.
 
