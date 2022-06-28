@@ -3,7 +3,7 @@ shortname: PRP-10
 name: Stateful Smart Contracts
 type: Draft
 status: Raw
-editor: Jürgen Eckel <juergen@riddleandcode.com>
+editor: Jürgen Eckel <juergen@riddleandcode.com>, Thomas Fürstner <tom@riddleandcode.com>
 ```
 
 ## Abstract
