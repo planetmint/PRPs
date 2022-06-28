@@ -14,8 +14,10 @@ Short Name   | Title                                                         | T
 [PRP-2](2)   | Consensus-Oriented Specification System                       | Meta     | Draft      | Jürgen Eckel
 [PRP-3](3)   | How to handle ALL pull requests                               | Meta     | Draft      | Jürgen Eckel
 [PRP-4](4)   | Standard process to set up a local node for development & testing, using Docker Compose | Standard | Raw | Jürgen Eckel
+[PRP-5](5)   | New types of operations for the transactional model           | Informational | Raw   | Jürgen Eckel
 [PRP-6](6)   | Tendermint Performance Profiling                              | Informational | Raw   | Jürgen Eckel
 [PRP-7](7)   | Performance Study: Analysis of Transaction Throughput in a Planetmint Network | Informational | Raw        | Jürgen Eckel
 [PRP-8](8)   | Adding tradable asset attribution - attribution/material balance| Informational | Raw        | Jürgen Eckel
+[PRP-10](10)   | Stateful Smart Contracts | Draft | Raw        | Jürgen Eckel
 
 
