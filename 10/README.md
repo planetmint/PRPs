@@ -67,5 +67,24 @@ The incoming transaction IDs are resolved by the ledger and the corresponding ra
 
 ### Result - contract output
 
+The contract output and result is written to ['metadata']['results'] and depends completley on the the contract itself. The caller therefore has to verify the result and the outcome.
 
 ### States of Smart Contracts
+
+Due to the nature of the inputs it becomes clear that the 
+['data']['assets']        <- ['assets']['data']
+mapping refers to the contract itself and some more static input that is specific to the asset or the instance of contract itself.
+The same holds for ['data']['txids']         <- ['metadata']['txids']. This enables the reference of other contracts/libraries/scenarios or to refer to other data/input contexts. 
+
+['data']['metadata']      <- ['metadata']['data'] is the only input that refers to the transaction itself and is able to reflet input parameters as we know it for functions. 
+
+Zenroom itselfs comes with the concept of scenarios. That's why this document will also stick ot thie nomenclatura.
+
+#### Contract creation
+The creation of a contract is very simple. All parameters and need to be defined in order to be able to execute the contract.
+1. ['data']['assets']        <- ['assets']['data']
+2. ['data']['metadata']      <- ['metadata']['data']
+3. ['data']['txids']         <- ['metadata']['txids'] (optional)
+
+#### Reusealbe contracts - state-ful contracts
+A contract can persist states after being created. This can be achieved by the Transfer transaction. This type of transaction enables the contract to persist data in the result-output in such a way that it can be reutilized in the next iteration/exeuction. Therewith, states can be referenced without the need to extend the framework or the integration. It's more a matter of a convention like on memory stacks. Handover-routines need to be defined to make it transparent.
