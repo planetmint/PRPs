@@ -4,7 +4,7 @@ name: New types of operations for the transactional model
 type: Meta
 status: Draft
 editor: Jürgen Eckel <juergen@riddleandcode.com> 
-contributors: Arpit Shukla <arpitnshukl@gmail.com> 
+contributors: Arpit Shukla <arpitnshukl@gmail.com>, Lorenz Herzberger <lorenzherzberger@gmail.com>
 ```
 
 # Note
@@ -56,12 +56,84 @@ This is due to waste/abuse or quality constraints. There is, therefore, a condit
 
 # Implementation
 
+As mentioned above the amounts of inputs must match the sum of output and consumption amounts for a COMPOSE transaction to be valid. The consumption is mapped to it's corresponding input via an input index, similar to the way an input is mapped to an output. Here's a JSON example for inputs, outputs, metadata:
+
+```json
+{
+  "inputs": [
+    {
+      "fulfills": {
+        "transaction_id": transaction_id, // given that the amount of this output is "100"
+        "output_index": output_index
+      },
+      "owners_before": [public_key_1, public_key_2, etc.],
+      "fulfillment": fulfillment
+    },
+    // ...
+  ],
+  "outputs": [
+    {
+      "condition": condition,
+      "public_keys": [public_key_1, public_key_2, etc.],
+      "amount": "76" // unconsumed amount
+    }
+    // ...
+  ],
+  "metadata": {
+    "consumption": [
+      {"input_index": 0, "amount": "24"}, // consumed amount
+      {"input_index": 1, "amount": "56"}
+    ]
+  }
+}
+```
+
 Burning an asset is done by sending it to the following address: 
 'BurnBurnBurnBurnBurnBurnBurnBurnBurnBurnBurn'
 that is 11 times 'Burn'. Burning assets is an implicit transfer transaction and difficult to modell without getting this transfer explicitly signed by the signing party.
 Instead, an implicit burning of the asset is proposed. The implicit burning is done by not locking the asset by an output - not assigning and input to any output.
 This means that the amount of assets being utilized to create the asset Z (COMPOSE) is taken as an input, but not forwarded to any output.
-The asset is not assigned to anyone and thereby non-existent. It's a burning by non-assignment. 
+The asset is not assigned to anyone and thereby non-existent. It's a burning by non-assignment.
+
+Here's a JSON example for burning some assets during a DECOMPOSE transaction:
+
+```json
+{
+  "assets": [
+    {"id": "38100137cea87fb9bd751e2372abb2c73e7d5bcf39d940a5516a324d9c7fb88d"}
+  ],
+  "inputs": [
+    {
+      "fulfills": {
+        "transaction_id": "38100137cea87fb9bd751e2372abb2c73e7d5bcf39d940a5516a324d9c7fb88d",
+        "output_index": 0
+      },
+      "owners_before": [public_key_1, public_key_2, etc.],
+      "fulfillment": fulfillment
+    },
+    {
+      "fulfills": {
+        "transaction_id": "38100137cea87fb9bd751e2372abb2c73e7d5bcf39d940a5516a324d9c7fb88d",
+        "output_index": 0
+      },
+      "owners_before": ["BurnBurnBurnBurnBurnBurnBurnBurnBurnBurnBurn"],
+      "fulfillment": fulfillment
+    },
+  ],
+  "ouptuts": [
+    {
+      "condition": condition,
+      "public_keys": [public_key_1, public_key_2, etc.],
+      "amount": "50" // recovered amount
+    },
+    {
+      "condition": condition,
+      "public_keys": ["BurnBurnBurnBurnBurnBurnBurnBurnBurnBurnBurn"],
+      "amount": "25" // burnt amount
+    }
+  ],
+}
+```
 
 ## Verification
 The verification of the transaction should look like follows:
