@@ -20,16 +20,16 @@ Asset based smart policies are smart contracts that verify integrity and garante
 The smart policiy is a contrac verifying the transaction state before it is finally commited to the network.
 
 The smart policy has to be mentioned as a asset based reference in
-1. ['assets']['data']['policy']['txids'] and will be resolved by the DLT nodes, or
+1. ['assets']['data']['policies']['txids'] and will be resolved by the DLT nodes, or
 2. can be defined in ['assets']['data']['policy']['0', ...]
 
 
 ## Input
 
-['assets']['data']['policy']['txids'] is expected to contain an array  of transaction-ids that looks like follows:
+['assets']['data']['policies']['txids'] is expected to contain an array  of transaction-ids that looks like follows:
 ``` 
 {
-    "metadata": {
+    "policies": {
         "txids": [
             { "a5e52be098746836fee53399878a2cc4ffff1b9edaead7365b7062e2529e61d2" },
             { "8f0ba09f93656f7f2f371bfb098f1096d33f674de9b04f625b47f87196acbd14" }
@@ -37,13 +37,13 @@ The smart policy has to be mentioned as a asset based reference in
     }
 }
 ```
-another option is to list the txids within an array beginning with '0' until an element is missing:
+another option is to list the policies within an array beginning with :
 ``` 
 {
-    "metadata": {
-        "txids": [
-            { "0" :  { "... raw transaction details" } },
-            { "1" :  { "... raw transaction details" } }
+    "policies": {
+        "raw": [
+            { "0" : "raw zenroom policy 1" },
+            { "1" : "raw zenroom policy 2" }
         ]
     }
 }
@@ -57,10 +57,14 @@ The planetmint node prepares the inputs in such a way that the incoming data is 
 The incoming transaction IDs are resolved by the ledger and the corresponding raw data is append to the ['data']['txids'] object as follows:
 ``` 
 {
-    "data": {
+    "policies": {
         "txids": [
             { "a5e52be098746836fee53399878a2cc4ffff1b9edaead7365b7062e2529e61d2": { "... raw transaction details" } },
             { "8f0ba09f93656f7f2f371bfb098f1096d33f674de9b04f625b47f87196acbd14": { "... raw transaction details" } }
+        ],
+        "raw": [
+            { "0" : "raw zenroom policy 1" },
+            { "1" : "raw zenroom policy 2" }
         ]
     }
 }
@@ -68,4 +72,4 @@ The incoming transaction IDs are resolved by the ledger and the corresponding ra
 
 ### Result - contract output
 
-The policy output and result is written to ['metadata']['results']['policies'] and depends completley on the the contract itself. The caller therefore has to verify the result and the outcome.
+The policy output and result is written to ['metadata']['results']['policies']['txids']['$txid'] and ['metadata']['results']['policies']['raw']['$raw_id'] and depends completley on the the policy itself. The caller therefore has to verify the result and the outcome.
