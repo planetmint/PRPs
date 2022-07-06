@@ -15,9 +15,9 @@ The concept of Smart Policies can be derived and integrated with zenroom and the
 Smart contract are a very powerful concept. At the same time, you need to explicitly interact with them. Network-wide or asset-based policies cannot be enfored with contracts alone. A concept to enforce policies on assets or certain types of transactions needs is missing and needs to be defined.
 
 ## Specification
-Zenroom based smart contracts can be defied and are precisly specified at [PP10](../10).
+Zenroom based smart contracts can be defined and are precisely specified at [PRP-10](../10).
 Asset based smart policies are smart contracts that verify integrity and garantee compliance towards a given contract.
-The smart policiy is a contrac verifying the transaction state before it is finally commited to the network.
+The smart policy is a contract verifying the transaction state before it is finally commited to the network.
 
 The smart policy has to be mentioned as a asset based reference in
 1. ['assets']['data']['policies']['txids'] and will be resolved by the DLT nodes, or
@@ -72,4 +72,4 @@ The incoming transaction IDs are resolved by the ledger and the corresponding ra
 
 ### Result - contract output
 
-The policy output and result is written to ['metadata']['results']['policies']['txids']['$txid'] and ['metadata']['results']['policies']['raw']['$raw_id'] and depends completley on the the policy itself. The caller therefore has to verify the result and the outcome.
+The policy output and result is written to ['metadata']['results']['policies']['txids']['$txid'] and ['metadata']['results']['policies']['raw']['$raw_id'] and depends completely on the the policy itself. The caller therefore has to verify the result and the outcome.
