@@ -511,7 +511,7 @@ The script tag is entirely optional but has to follow a certain form if implemen
     "state": "string || associative array",
     "input": "associative array",
     "output": "associative array",
-    "policies": "list"
+    "policies": "associative array"
   }
 }
 ```

@@ -31,7 +31,7 @@ It is defined as follows:
     "state": "string || object",
     "input": "object",
     "output": "object",
-    "policies": "list"
+    "policies": "object"
   }
 }
 ```
