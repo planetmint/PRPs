@@ -19,14 +19,14 @@ Zenroom based smart contracts can be defined and are precisely specified at [PRP
 Asset based smart policies are smart contracts that verify integrity and garantee compliance towards a given contract.
 The smart policy is a contract verifying the transaction state before it is finally commited to the network.
 
-The smart policy has to be mentioned as a asset based reference in
-1. ['assets']['data']['policies']['txids'] and will be resolved by the DLT nodes, or
-2. can be defined in ['assets']['data']['policy']['0', ...]
+The smart policy has to be mentioned as an asset based reference in
+1. ['script']['policies']['txids'] and will be resolved by the DLT nodes, or
+2. can be defined in ['script']['policies']['raw']['0', ...]
 
 
 ## Input
 
-['assets']['data']['policies']['txids'] is expected to contain an array  of transaction-ids that looks like follows:
+['script']['policies']['txids'] is expected to contain an array  of transaction-ids that looks like follows:
 ``` 
 {
     "policies": {
@@ -54,7 +54,7 @@ The planetmint node prepares the inputs in such a way that the incoming data is 
 
 #### Transaction IDs
 
-The incoming transaction IDs are resolved by the ledger and the corresponding raw data is append to the ['data']['txids'] object as follows:
+The incoming transaction IDs are resolved by the ledger and the corresponding raw data is appended to the ['policies']['txids'] object as follows:
 ``` 
 {
     "policies": {
@@ -72,4 +72,4 @@ The incoming transaction IDs are resolved by the ledger and the corresponding ra
 
 ### Result - contract output
 
-The policy output and result is written to ['metadata']['results']['policies']['txids']['$txid'] and ['metadata']['results']['policies']['raw']['$raw_id'] and depends completely on the the policy itself. The caller therefore has to verify the result and the outcome.
+The policy output and result is written to ['script']['output']['policies']['txids']['$txid'] and ['script']['output']['policies']['raw']['$raw_id'] and depends completely on the the policy itself. The caller therefore has to verify the result and the outcome.
