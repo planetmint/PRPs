@@ -30,6 +30,9 @@ For the multi-asset support `asset` was changed to `assets`. In v2.0 asset had t
 ## 3. New transactional types
 In v3.0 of the transaction spec the set of allowed transaction types is enlarged by `COMPOSE` and `DECOMPOSE`. These new transaction types have their respective validation rules.
 
+## 4. New optional component `script`
+From v3.0 on a new optional transaction component `script` is added in order to allow for stateful smart contracts (refer to [PRP-10](../10/)) and smart policies (refer to [PRP-11](../11)).
+
 # Specification
 
 ## Introduction
@@ -79,7 +82,8 @@ A transaction can be implemented as an <a href="#associative-array"><span>associ
     "outputs": outputs,
     "operation": operation,
     "assets": assets,
-    "metadata": metadata
+    "metadata": metadata,
+    "script": script
 }
 ```
 
@@ -491,6 +495,34 @@ Here’s a JSON example:
 ```
 
 For COMPOSE and DECOMPOSE transactions additional information in the metadata is needed. The required values are governed by [PRP-5](../5).
+
+### Transaction Components: Script
+The script tag is entirely optional but has to follow a certain form if implemented. This tag is used to define/use smart contracts or policies described in [PRP-10](../10/) and [PRP-11](../11) It is defined as follows:
+
+```json
+{
+  "script": {
+    "code": {
+      "type": "string",
+      "raw": "string",
+      "parameters": "associative array", // or
+      "tx_id": "string"
+    },
+    "state": "string || associative array",
+    "input": "associative array",
+    "output": "associative array",
+    "policies": "list"
+  }
+}
+```
+
+In this context the `code` key refers either to an existing contract or defines an entirely new one where `type` is the language, `raw` is the actual code and `parameters` are the input parameters of the contract.
+
+`state` refers to the initial state or the transaction containing the latest state.
+
+`input` and `output` can be seen as the parameters and return value/state of a contract.
+
+Last but not least `policies` are used to enforce certain rules defined as smart contracts on an asset.
 
 ## How to Construct a Transaction
 
