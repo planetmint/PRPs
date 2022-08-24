@@ -30,7 +30,8 @@ It is defined as follows:
     },
     "state": "string || object",
     "input": "object",
-    "output": "object"
+    "output": "object",
+    "policies": "list"
   }
 }
 ```
@@ -40,14 +41,12 @@ The contract is supposed to write the result into ['script']['output'] and the c
 For a more detailed explaination please refer to the transaction specification in [PRP-9](../9)
 
 ## Input
-<!-- Can ouputs of other txs be consumed? How to handle fulfillment -->
 The ['script']['input'] is an arbitrary JSON data blobs. 
 
 ### Preperation
 The planetmint node prepares the inputs in such a way that the incoming data is mapped to the following data blobs as follows:
 
 #### Data mappings
-<!-- Explaination needed -->
 * ['data']['input']        <- ['script']['input']
 
 ### Result - contract output
