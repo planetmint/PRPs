@@ -43,7 +43,7 @@ This can come in various possibilities:
 * selling 999 units of B without any units of carbon emssion and 1 B with 2000 units of carbon emission.
 * selling each unit of B with 2 units of carbon emission
 
-The process of selling the carbon emission is aligned to the overall process of selling the production batch, but can be optimized to not affect each and every unit of B. This leaves room for business model improvements and optimiations, and takes care about respecting all carbon emissions being notarized.
+The process of selling the carbon emission is aligned to the overall process of selling the production batch, but can be optimized to not affect each and every unit of B. This leaves room for business model improvements and optimizations, and takes care about respecting all carbon emissions being notarized.
 This is the definition of the attribution/material balance.
 
 ## Implementation
