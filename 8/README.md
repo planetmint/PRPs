@@ -46,7 +46,7 @@ This can come in various possibilities:
 The process of selling the carbon emission is aligned to the overall process of selling the production batch, but can be optimized to not affect each and every unit of B. This leaves room for business model improvements and optimiations, and takes care about respecting all carbon emissions being notarized.
 This is the definition of the attribution/material balance.
 
-# Implementation
+## Implementation
 The transaction schema for outputs must be enhanced by the `composite_amount` property.
 It indicates the composition of the created, transfered, composed or decomposed assets.
 It can be comprised of any number of keys and their respective value as `integer`. If any conversions from `integers` are needed they must be provided.
@@ -165,3 +165,28 @@ As specified in the [PRP-9](../9/) `TRANSFER` transactions must have at least 1 
 ```
 
 `DECOMPOSE` transactions do the same but in reverse consuming a certain composite and creating new assets from it.
+
+## Verification
+The verification of the transactional outputs should look like follows:
+* verify sum of inputs amounts == sum of output amounts
+
+## Integration
+These operations are expected to be atomic and need to be integrated into 
+* planetmint
+* planetmint-python
+* planetmint-transactions
+
+# Credits
+The Developer Certificate of Origin was developed by the Linux community and has since been adopted by other projects, including many under the Linux Foundation umbrella (e.g. Hyperledger Fabric). The process described above (with the Signed-off-by line in Git commits) is also based on [the process used by the Linux community](https://github.com/torvalds/linux/blob/master/Documentation/process/submitting-patches.rst#11-sign-your-work---the-developers-certificate-of-origin).
+
+# Copyright Waiver
+
+<p xmlns:dct="http://purl.org/dc/terms/">
+  <a rel="license"
+     href="http://creativecommons.org/publicdomain/zero/1.0/">
+    <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+  </a>
+  <br />
+  To the extent possible under law, all contributors to this PRP
+  have waived all copyright and related or neighboring rights to this PRP.
+</p>
