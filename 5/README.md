@@ -37,33 +37,36 @@ The amount in the operation reflects the size of batch that is being created fro
 
 This will result in the 
 * creation of 2 Z (using [10 A, 10 B, 10 C and 2 D]) and thereby burning
-* the following assets [10 A, 10 B, 10 C and 2 D] MUST NOT be assigned to any output and must be included as a metadata
+* the following assets [10 A, 10 B, 10 C and 2 D] MUST NOT be assigned to any output
 
-Alice will thereafter hold [5 A, 5 B, 0 C, 3 D, 2 Z]
+Alice will thereafter hold [10 A, 5 B, 0 C, 3 D, 2 Z]
 It is assumed that Z has an asset id: 41c6cd47fd316ef9e7c86640c5004296f8d384800445da956f45ec835140384e
 
 ## DECOMPOSE
 
 Bob retrieves 1 Z with asset id 41c6cd47fd316ef9e7c86640c5004296f8d384800445da956f45ec835140384e.
-Bob wants to recycle Z and decompose Z into [5A, 5B, 5C, 1 D].
+Bob wants to recycle Z and decompose Z into an arbitrary number of outputs with arbitrary amounts [5A, 5B, 5C, 1 D].
 
 This will result in the 
-* the following asset Z is not assigned to any output 
+* the following asset Z is not assigned to any output
 * and the creation of [5 A, 5 B, 5 C and 1 D]
 
-**NOTE that the decomposition process can result in fewer components than the original component was created with. 
-This is due to waste/abuse or quality constraints. There is, therefore, a condition that says that the number of elements during the DECOMPOSITION operation can only be a maximum of the number of elements stored in the metadata that was being consumed or used during the COMPOSITION operation. The difference is to be considered as waste.
+
+**NOTE that the decomposition outputs cannot directly be transferred. In order to create a distinct asset id it is necessarry to issue a create operation for each output to make them transferable.
 
 # Implementation
-
-As mentioned above the amounts of inputs must match the sum of output and consumption amounts for a COMPOSE transaction to be valid. The consumption is mapped to it's corresponding input via an input index, similar to the way an input is mapped to an output. Here's a JSON example for inputs, outputs, metadata:
+COMPOSE transactions consume all provided inputs and create exactly one new asset with an arbitrary amount. The transaction id will serve as the asset id for the new asset. This means an arbitrary number of outputs and amounts can be created. The number of consumed assets is also arbitrary. Here's a JSON example for assets, inputs and outputs:
 
 ```json
 {
+  "assets": [
+    {"data": "QmW5GVMW98D3mktSDfWHS8nX2UiCd8gP1uCiujnFX4yK8n"},
+    {"id": "41c6cd47fd316ef9e7c86640c5004296f8d384800445da956f45ec835140384e"}
+  ],
   "inputs": [
     {
       "fulfills": {
-        "transaction_id": transaction_id, // given that the amount of this output is "100"
+        "transaction_id": transaction_id,
         "output_index": output_index
       },
       "owners_before": [public_key_1, public_key_2, etc.],
@@ -75,31 +78,22 @@ As mentioned above the amounts of inputs must match the sum of output and consum
     {
       "condition": condition,
       "public_keys": [public_key_1, public_key_2, etc.],
-      "amount": "76" // unconsumed amount
+      "amount": "76"
     }
     // ...
-  ],
-  "metadata": {
-    "consumption": [
-      {"input_index": 0, "amount": "24"}, // consumed amount
-      {"input_index": 1, "amount": "56"}
-    ]
-  }
+  ]
 }
 ```
 
-Burning an asset is done by sending it to the following address: 
-'BurnBurnBurnBurnBurnBurnBurnBurnBurnBurnBurn'
-that is 11 times 'Burn'. Burning assets is an implicit transfer transaction and difficult to modell without getting this transfer explicitly signed by the signing party.
-Instead, an implicit burning of the asset is proposed. The implicit burning is done by not locking the asset by an output - not assigning and input to any output.
-This means that the amount of assets being utilized to create the asset Z (COMPOSE) is taken as an input, but not forwarded to any output.
-The asset is not assigned to anyone and thereby non-existent. It's a burning by non-assignment.
+Because all provided inputs are consumed and the outputs only count for the newly created asset. The consumed inputs must be prepared accordingly through other transactional types (e.g. TRANSFER).
 
-Here's a JSON example for burning some assets during a DECOMPOSE transaction:
+DECOMPOSE transactions take a single asset as input and again consume the full amount. An arbitrary number of assets can be created. Note that the number of outputs is limited by the number of newly created assets. To make the assets transferable again they first need a distinct assed id. This is achieved by consuming an output with a CREATE transaction. This is the only case where a CREATE transaction fulfills any output. The output_index corresponds with the index in the assets array of the DECOMPOSE transaction. Here's a JSON example for a DECOMPOSE transaction:
 
 ```json
 {
   "assets": [
+    {"data": "QmW5GVMW98D3mktSDfWHS8nX2UiCd8gP1uCiujnFX4yK8n"},
+    {"data": "QmW5GVMW98D3mktSDfWHS8nX2UiCd8gP1uCiujnFX4yK8n"},
     {"id": "38100137cea87fb9bd751e2372abb2c73e7d5bcf39d940a5516a324d9c7fb88d"}
   ],
   "inputs": [
@@ -111,26 +105,18 @@ Here's a JSON example for burning some assets during a DECOMPOSE transaction:
       "owners_before": [public_key_1, public_key_2, etc.],
       "fulfillment": fulfillment
     },
-    {
-      "fulfills": {
-        "transaction_id": "38100137cea87fb9bd751e2372abb2c73e7d5bcf39d940a5516a324d9c7fb88d",
-        "output_index": 0
-      },
-      "owners_before": ["BurnBurnBurnBurnBurnBurnBurnBurnBurnBurnBurn"],
-      "fulfillment": fulfillment
-    },
   ],
-  "ouptuts": [
+  "outputs": [
     {
       "condition": condition,
       "public_keys": [public_key_1, public_key_2, etc.],
-      "amount": "50" // recovered amount
+      "amount": "50"
     },
     {
       "condition": condition,
-      "public_keys": ["BurnBurnBurnBurnBurnBurnBurnBurnBurnBurnBurn"],
-      "amount": "25" // burnt amount
-    }
+      "public_keys": [public_key_1, public_key_2, etc.],
+      "amount": "50"
+    },
   ],
 }
 ```
@@ -138,16 +124,14 @@ Here's a JSON example for burning some assets during a DECOMPOSE transaction:
 ## Verification
 The verification of the transaction should look like follows:
 * verify inputs
-* verify consumption of inputs: that each output asset that is also input has at less amount than before.
 * verify that something got created, a new asset type, that does not have a corresponding input
-
 
 
 ## Integration
 The operation is expected to be atomic and needs to be integrated into 
 * planetmint
 * planetmint-python
-
+* transactions
 
 # Credits
 The Developer Certificate of Origin was developed by the Linux community and has since been adopted by other projects, including many under the Linux Foundation umbrella (e.g. Hyperledger Fabric). The process described above (with the Signed-off-by line in Git commits) is also based on [the process used by the Linux community](https://github.com/torvalds/linux/blob/master/Documentation/process/submitting-patches.rst#11-sign-your-work---the-developers-certificate-of-origin).
