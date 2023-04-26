@@ -43,9 +43,9 @@ The author of the PRP is responsible for building consensus within the community
 
 ### Types of PRP
 There are three types of PRPs:
-* A **Standard Track PRP** describes any change to network protocols, transaction validity rules, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using BigchainDB products.
-* An **Informational PRP** describes a BigchainDB design issue, or provides general guidelines or information to the BigchainDB community, but does not propose a new feature. Informational PRPs do not necessarily represent BigchainDB community consensus or a recommendation, so users and implementers are free to ignore Informational PRPs or follow their advice.
-* A **Meta PRP** describes a process surrounding BigchainDB or proposes a change to a process.
+* A **Standard Track PRP** describes any change to network protocols, transaction validity rules, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using Planetmint products.
+* An **Informational PRP** describes a Planetmint design issue, or provides general guidelines or information to the Planetmint community, but does not propose a new feature. Informational PRPs do not necessarily represent Planetmint community consensus or a recommendation, so users and implementers are free to ignore Informational PRPs or follow their advice.
+* A **Meta PRP** describes a process surrounding Planetmint or proposes a change to a process.
 
 ### PRP Format
 A PRP is a set of Markdown documents (the main file SHOULD be called `README.md`), together with comments, attached files, and other resources. A PRP is identified by its number (e.g. this PRP is **PRP-2**). The number of the PRP is also the name of the directory where its files are stored.
@@ -70,7 +70,7 @@ Each PRP SHOULD include the following sections:
 
 1. **Abstract**. The abstract is a short (~200 word) informal description of the technical issue being addressed.
 
-1. **Motivation**. The motivation is a possibly long informal description of the issue being addressed. The motivation is critical for PRPs that want to change the BigchainDB protocol. It should clearly explain why the existing protocol is inadequate to address the problem that the PRP solves. PRP submissions without sufficient motivation may be rejected outright.
+1. **Motivation**. The motivation is a possibly long informal description of the issue being addressed. The motivation is critical for PRPs that want to change the Planetmint protocol. It should clearly explain why the existing protocol is inadequate to address the problem that the PRP solves. PRP submissions without sufficient motivation may be rejected outright.
 
 1. **Problem Breakdown** The detailed formal description of the problem in the form of the list of exact issues the solution has to address.
 

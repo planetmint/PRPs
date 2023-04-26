@@ -89,7 +89,7 @@ C4 is meant to provide a reusable optimal collaboration model for open source so
 
 ### 2.6. Evolution of Public Contracts
 
-Definition: **Public Contracts** _noun_ - All public APIs and protocols. In other words, read the PRPs (and the things they reference) and you'll have a good start. In particular, see PRP-7 - Definition of the BigchainDB Public API.
+Definition: **Public Contracts** _noun_ - All public APIs and protocols. In other words, read the PRPs (and the things they reference) and you'll have a good start. In particular, see PRP-7 - Definition of the Planetmint Public API.
 
 1. All Public Contracts (APIs or protocols) SHALL be documented.
 1. All Public Contracts SHOULD have space for extensibility and experimentation.
