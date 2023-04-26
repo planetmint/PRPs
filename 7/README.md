@@ -64,7 +64,7 @@ All machines were provided with the operating system *Ubuntu 18.04.1 LTS (Bionic
 
 This procedure was automated by a [custom script][self:provide.sh].
 
-Three main configuration files were generated and edited (all of them are included as extra files in this BEP):
+Three main configuration files were generated and edited (all of them are included as extra files in this PRP):
 - The Tendermint [`config.toml`](self:config.toml) configuration file (default location: `${HOME}/.tendermint/config/config.toml`) was generated via `tendermint init` and customized.
 - The Tendermint [`genesis.json`][self:genesis.json] file (generated though the previous command `tendermint init`) was customized with the public keys of the four nodes. It was then copied into all machines under `${HOME}/.tendermint/config/genesis.json`.
 - The Planetmint [`.planetmint`][self:planetmint.json] was generated via `Planetmint configure` and copied into all machines under `${HOME}/.planetmint`.
@@ -263,7 +263,7 @@ We also ran a short test to measure the peak performance of the system: under fa
     <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
   </a>
   <br />
-  To the extent possible under law, all contributors to this BEP
+  To the extent possible under law, all contributors to this PRP
   have waived all copyright and related or neighboring rights to this PRP.
 </p>
 

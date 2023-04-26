@@ -57,7 +57,7 @@ Each PRP MUST customize and include this header:
 ````
 ```
 shortname: [number/shortname]
-name: [Full name of the BEP]
+name: [Full name of the PRP]
 type: [standard | informational | meta ]
 status: [raw | draft | stable | deprecated | retired | deleted]
 editor: [Editor Name <email address>]
@@ -82,7 +82,7 @@ Each PRP SHOULD include the following sections:
 
 1. **Implementation**. The implementations must be completed before any PRP is given status "stable", but it need not be completed before the PRP is accepted. While there is merit to the approach of reaching consensus on the PRP and rationale before writing code, the principle of "rough consensus and running code" is still useful when it comes to resolving many discussions of API details.
 
-1. **Copyright Waiver**. Except for PRP-1 (C4) and PRP-2 (COSS), all PRPs MUST be released to the public domain. To do that, the following block of HTML SHOULD be used in the BEP's source Markdown file. ([HTML is valid Markdown](https://daringfireball.net/projects/markdown/syntax#html).)
+1. **Copyright Waiver**. Except for PRP-1 (C4) and PRP-2 (COSS), all PRPs MUST be released to the public domain. To do that, the following block of HTML SHOULD be used in the PRP's source Markdown file. ([HTML is valid Markdown](https://daringfireball.net/projects/markdown/syntax#html).)
 
 ```html
 <p xmlns:dct="http://purl.org/dc/terms/">
@@ -91,7 +91,7 @@ Each PRP SHOULD include the following sections:
     <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
   </a>
   <br />
-  To the extent possible under law, all contributors to this BEP
+  To the extent possible under law, all contributors to this PRP
   have waived all copyright and related or neighboring rights to this PRP.
 </p>
 ```
@@ -141,7 +141,7 @@ Any member of the domain MAY branch a PRP at any point. This is done by copying 
 
 The responsible editor of a branched PRP is the person who makes the branch.
 
-Branches, including added contributions, SHOULD be dedicated to the public domain using CC0 (just like the original BEP). This means that contributors are guaranteed the right to merge changes made in branches back into their original PRPs.
+Branches, including added contributions, SHOULD be dedicated to the public domain using CC0 (just like the original PRP). This means that contributors are guaranteed the right to merge changes made in branches back into their original PRPs.
 
 Technically speaking, a branch is a *different* PRP, even if it carries the same name. Branches have no special status except that accorded by the community.
 
