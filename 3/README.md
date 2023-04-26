@@ -73,6 +73,6 @@ The Developer Certificate of Origin was developed by the Linux community and has
     <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
   </a>
   <br />
-  To the extent possible under law, all contributors to this BEP
+  To the extent possible under law, all contributors to this PRP
   have waived all copyright and related or neighboring rights to this PRP.
 </p>

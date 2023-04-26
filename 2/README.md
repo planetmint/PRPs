@@ -43,9 +43,9 @@ The author of the PRP is responsible for building consensus within the community
 
 ### Types of PRP
 There are three types of PRPs:
-* A **Standard Track PRP** describes any change to network protocols, transaction validity rules, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using BigchainDB products.
-* An **Informational PRP** describes a BigchainDB design issue, or provides general guidelines or information to the BigchainDB community, but does not propose a new feature. Informational PRPs do not necessarily represent BigchainDB community consensus or a recommendation, so users and implementers are free to ignore Informational PRPs or follow their advice.
-* A **Meta PRP** describes a process surrounding BigchainDB or proposes a change to a process.
+* A **Standard Track PRP** describes any change to network protocols, transaction validity rules, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using Planetmint products.
+* An **Informational PRP** describes a Planetmint design issue, or provides general guidelines or information to the Planetmint community, but does not propose a new feature. Informational PRPs do not necessarily represent Planetmint community consensus or a recommendation, so users and implementers are free to ignore Informational PRPs or follow their advice.
+* A **Meta PRP** describes a process surrounding Planetmint or proposes a change to a process.
 
 ### PRP Format
 A PRP is a set of Markdown documents (the main file SHOULD be called `README.md`), together with comments, attached files, and other resources. A PRP is identified by its number (e.g. this PRP is **PRP-2**). The number of the PRP is also the name of the directory where its files are stored.
@@ -57,7 +57,7 @@ Each PRP MUST customize and include this header:
 ````
 ```
 shortname: [number/shortname]
-name: [Full name of the BEP]
+name: [Full name of the PRP]
 type: [standard | informational | meta ]
 status: [raw | draft | stable | deprecated | retired | deleted]
 editor: [Editor Name <email address>]
@@ -70,7 +70,7 @@ Each PRP SHOULD include the following sections:
 
 1. **Abstract**. The abstract is a short (~200 word) informal description of the technical issue being addressed.
 
-1. **Motivation**. The motivation is a possibly long informal description of the issue being addressed. The motivation is critical for PRPs that want to change the BigchainDB protocol. It should clearly explain why the existing protocol is inadequate to address the problem that the PRP solves. PRP submissions without sufficient motivation may be rejected outright.
+1. **Motivation**. The motivation is a possibly long informal description of the issue being addressed. The motivation is critical for PRPs that want to change the Planetmint protocol. It should clearly explain why the existing protocol is inadequate to address the problem that the PRP solves. PRP submissions without sufficient motivation may be rejected outright.
 
 1. **Problem Breakdown** The detailed formal description of the problem in the form of the list of exact issues the solution has to address.
 
@@ -82,7 +82,7 @@ Each PRP SHOULD include the following sections:
 
 1. **Implementation**. The implementations must be completed before any PRP is given status "stable", but it need not be completed before the PRP is accepted. While there is merit to the approach of reaching consensus on the PRP and rationale before writing code, the principle of "rough consensus and running code" is still useful when it comes to resolving many discussions of API details.
 
-1. **Copyright Waiver**. Except for PRP-1 (C4) and PRP-2 (COSS), all PRPs MUST be released to the public domain. To do that, the following block of HTML SHOULD be used in the BEP's source Markdown file. ([HTML is valid Markdown](https://daringfireball.net/projects/markdown/syntax#html).)
+1. **Copyright Waiver**. Except for PRP-1 (C4) and PRP-2 (COSS), all PRPs MUST be released to the public domain. To do that, the following block of HTML SHOULD be used in the PRP's source Markdown file. ([HTML is valid Markdown](https://daringfireball.net/projects/markdown/syntax#html).)
 
 ```html
 <p xmlns:dct="http://purl.org/dc/terms/">
@@ -91,7 +91,7 @@ Each PRP SHOULD include the following sections:
     <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
   </a>
   <br />
-  To the extent possible under law, all contributors to this BEP
+  To the extent possible under law, all contributors to this PRP
   have waived all copyright and related or neighboring rights to this PRP.
 </p>
 ```
@@ -141,7 +141,7 @@ Any member of the domain MAY branch a PRP at any point. This is done by copying 
 
 The responsible editor of a branched PRP is the person who makes the branch.
 
-Branches, including added contributions, SHOULD be dedicated to the public domain using CC0 (just like the original BEP). This means that contributors are guaranteed the right to merge changes made in branches back into their original PRPs.
+Branches, including added contributions, SHOULD be dedicated to the public domain using CC0 (just like the original PRP). This means that contributors are guaranteed the right to merge changes made in branches back into their original PRPs.
 
 Technically speaking, a branch is a *different* PRP, even if it carries the same name. Branches have no special status except that accorded by the community.
 

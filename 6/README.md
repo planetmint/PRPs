@@ -127,7 +127,7 @@ In any case, the sentinel server should function as a buffer between the request
 
 [tm_benchmark_claim]: https://github.com/tendermint/tendermint/wiki/Benchmarks
 [Tendermint]: http://tendermint.readthedocs.io/projects/tools/en/master/install.html
-[PRP-10]: https://github.com/bigchaindb/PRPs/blob/master/10/README.md
+[PRP-10]: https://github.com/planetmint/PRPs/blob/master/10/README.md
 [tm-bench]: https://github.com/tendermint/tools/tree/master/tm-bench
 [comparison_tests]: https://github.com/bigchaindb/PRPs/blob/master/10/benchmark_tcp_pipeline.md
 [high_tx_rate]: ./figures/high_tx_rate.png

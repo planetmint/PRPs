@@ -11,6 +11,7 @@ The process to add or change a PRP is the following:
 
 Short Name   | Title                                                         | Type     | Status     | Editor
 -------------|---------------------------------------------------------------|----------|------------|-------
+[PRP-1](1)   | Collective Code Construction Contract                         | Meta     | Draft      | Jürgen Eckel
 [PRP-2](2)   | Consensus-Oriented Specification System                       | Meta     | Draft      | Jürgen Eckel
 [PRP-3](3)   | How to handle ALL pull requests                               | Meta     | Draft      | Jürgen Eckel
 [PRP-4](4)   | Standard process to set up a local node for development & testing, using Docker Compose | Standard | Raw | Jürgen Eckel
